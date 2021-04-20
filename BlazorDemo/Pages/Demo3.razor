@@ -1,0 +1,16 @@
+﻿@page "/Demo3"
+
+<h1>Demo3 - Increment</h1>
+
+<input type="button" @onclick="HandleClick" value="Increment" />
+
+<DemoComponent Value="@value" />
+
+@code {
+	private int value = 1;
+
+	private void HandleClick()
+	{
+		value += 1;
+	}
+}

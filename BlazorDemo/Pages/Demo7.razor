@@ -1,0 +1,18 @@
+﻿@page "/Demo7"
+
+@{
+	Logger.LogInformation(nameof(BuildRenderTree));
+}
+
+<h1>Demo7 - EventCallbacks</h1>
+
+<h4>i: @i</h4>
+<Demo7Component @bind-Value="@i" />
+
+@code 
+{
+	int i = 0;
+	
+	[Inject] public ILogger<Demo7> Logger { get; set; }
+
+}

@@ -1,0 +1,25 @@
+﻿@page "/Demo5"
+
+@{ 
+	Logger.LogInformation(nameof(BuildRenderTree));
+}
+
+
+<h1>Demo5 - Events</h1>
+
+<input type="button" @onclick="HandleClick" value="Click" />
+<h4>i: @i</h4>
+
+@code {
+	int i = 0;
+
+	[Inject] private ILogger<Demo5> Logger { get; set; }
+
+	private void HandleClick()
+	{
+		Logger.LogInformation(nameof(HandleClick));
+		i++;
+	}
+
+	//protected override bool ShouldRender() => false;
+}

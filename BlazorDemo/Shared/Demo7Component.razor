@@ -1,0 +1,44 @@
+﻿<h3>Demo 7 Component</h3>
+<h4>Value: @Value</h4>
+
+<input type="button" @onclick="HandleClickAsync" value="Increment" />
+
+@code {
+	[Parameter] public int Value { get; set; }
+	[Parameter] public EventCallback<int> ValueChanged { get; set; }
+
+	[Inject] public ILogger<Demo7Component> Logger { get; set; }
+
+	public async Task HandleClickAsync()
+	{
+		await ValueChanged.InvokeAsync(Value + 1);
+		//await Task.Yield();
+		Value = Value + 1;
+		await Task.CompletedTask; // ehm, stačí return, metoda bez async
+	}
+
+	//protected override void OnParametersSet()
+	//{
+	//	base.OnParametersSet();
+	//	Logger.LogInformation(nameof(OnParametersSet));
+	//	Logger.LogInformation(Value.ToString());
+	//}
+
+	//public async Task HandleClickAsync()
+	//{
+	//	Logger.LogInformation(nameof(HandleClickAsync) + " start");
+	//	Logger.LogInformation(Value.ToString());
+
+	//	await ValueChanged.InvokeAsync(Value + 1);
+	//	await Task.Yield();
+
+	//	Logger.LogInformation(nameof(HandleClickAsync) + " middle");
+	//	Logger.LogInformation(Value.ToString());
+
+	//	Value = Value + 1;
+
+	//	Logger.LogInformation(nameof(HandleClickAsync) + " end");
+	//	Logger.LogInformation(Value.ToString());
+
+	//}
+}
